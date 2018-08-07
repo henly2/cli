@@ -3,6 +3,7 @@ package cli
 import (
 	"github.com/fatih/color"
 	"os"
+	"fmt"
 )
 
 type ColorAttributes []color.Attribute
@@ -61,27 +62,33 @@ func NewColoredPrefixedUi() *ColoredPrefixedUi {
 		},
 	}
 }
-func (u *ColoredPrefixedUi) Ask(query string) (string, error) {
+func (u *ColoredPrefixedUi) Ask(a ...interface{}) (string, error) {
+	query := fmt.Sprint(a...)
 	return u.Ask2(query, u.AskPrefixColorAttributes[1], u.AskPrefixColorAttributes[0])
 }
 
-func (u *ColoredPrefixedUi) AskSecret(query string) (string, error) {
+func (u *ColoredPrefixedUi) AskSecret(a ...interface{}) (string, error) {
+	query := fmt.Sprint(a...)
 	return u.AskSecret2(query, u.AskSecretPrefixColorAttributes[1], u.AskSecretPrefixColorAttributes[0])
 }
 
-func (u *ColoredPrefixedUi) Error(message string) {
+func (u *ColoredPrefixedUi) Error(a ...interface{}) {
+	message := fmt.Sprint(a...)
 	u.Error2(message, u.ErrorPrefixColorAttributes[1], u.ErrorPrefixColorAttributes[0])
 }
 
-func (u *ColoredPrefixedUi) Info(message string) {
+func (u *ColoredPrefixedUi) Info(a ...interface{}) {
+	message := fmt.Sprint(a...)
 	u.Info2(message, u.InfoPrefixColorAttributes[1], u.InfoPrefixColorAttributes[0])
 }
 
-func (u *ColoredPrefixedUi) Output(message string) {
+func (u *ColoredPrefixedUi) Output(a ...interface{}) {
+	message := fmt.Sprint(a...)
 	u.Output2(message, u.OutputPrefixColorAttributes[1], u.OutputPrefixColorAttributes[0])
 }
 
-func (u *ColoredPrefixedUi) Warn(message string) {
+func (u *ColoredPrefixedUi) Warn(a ...interface{}) {
+	message := fmt.Sprint(a...)
 	u.Warn2(message, u.WarnPrefixColorAttributes[1], u.WarnPrefixColorAttributes[0])
 }
 
